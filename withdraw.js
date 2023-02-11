@@ -1,11 +1,9 @@
-const puppeteer = require("puppeteer");
-
+let { wLink } = require("./secrets");
 let page = 1;
-let link = "https://www.linkedin.com/mynetwork/invitation-manager/sent/";
 
 async function withDrawInvitations(browser, tab) {
     if (page == 1)
-        await tab.goto(link);
+        await tab.goto(wLink);
 
     let count = 0; //[#1]
     await tab.waitForTimeout(3000);
@@ -33,7 +31,7 @@ async function withDrawInvitations(browser, tab) {
     await tab.waitForSelector('button[aria-label="Next"]', { visible: true });
     let nextBtn = await tab.$('button[aria-label="Next"]');
 
-    let isDisabled = await tab.evaluate(function(elem) { return elem.classList.contains(".artdeco - button--disabled"); }, nextBtn); // hum check krte hai ki kya iss button ki classlist me disabled class hai?? 
+    let isDisabled = await tab.evaluate(function(elem) { return elem.classList.contains(".artdeco - button--disabled"); }, nextBtn);
     if (!isDisabled) {
         await nextBtn.click();
         console.log(page++);

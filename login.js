@@ -1,12 +1,14 @@
 const puppeteer = require("puppeteer");
 const withDrawInvitations = require("./withdraw");
 const sentInvitations = require("./sentInvitations");
-const CSSentInvitations = require("./CSSentInvitation");
+const csSentInvitations = require("./csSentInvitation");
 const msg = require("./msg");
 const InboxMsg = require("./inboxMsg");
-// give your email id and password here
-const id = "YOURMAIL@gmail.com";
-const pw = "YOUR PASSWORD";
+const companiesFilter = require("./companiesFilter");
+const ccChart = require("./ccChart");
+
+const { id,pw } = require("./secrets");
+console.log('id', id + ' password', pw);
 
 async function login() {
     let browser = await puppeteer.launch({
@@ -24,10 +26,12 @@ async function login() {
     await tab.waitForTimeout(10000);
     
     // await withDrawInvitations(browser, tab);
-    await sentInvitations(browser, tab);
-    // await CSSentInvitations(browser, tab);
+    // await sentInvitations(browser, tab);
+    // await csSentInvitations(browser, tab);
     // await msg(browser, tab);
     // await InboxMsg(browser, tab);
+    await companiesFilter(browser, tab);
+    // await ccChart(browser, tab);
 
 
 };
