@@ -55,6 +55,7 @@ Creates `&company` for given companies list.
 Helps you to find how many connections works in which comapnies.
 </p>
 </details>
+
 ## Tech Stack ⚒
 
 **Javascript, Node.js & Puppeteer**
